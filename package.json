@@ -1,6 +1,6 @@
 {
   "name": "jov2",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A light Javascript API for reading OV2 POI databases",
   "main": "index.js",
   "scripts": {
@@ -31,9 +31,9 @@
   "devDependencies": {
     "chai": "3.5.0",
     "coveralls": "2.11.9",
-    "ghooks": "1.2.1",
-    "istanbul": "0.4.3",
-    "mocha": "2.4.5",
+    "ghooks": "1.2.4",
+    "istanbul": "0.4.4",
+    "mocha": "2.5.3",
     "opener": "1.4.1"
   },
   "config": {
