@@ -1,4 +1,10 @@
-###
+### HEAD
+
+### 0.2.1 (December 27, 2016)
+
+  * Updated .travis.yml to run the tests with the latest stable version of Node.js,
+  * Updated the dependencies and replaced the deprecated ghooks module by Husky.
+
 
 ### 0.2.0 (September 21, 2016)
 

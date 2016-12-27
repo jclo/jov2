@@ -1,5 +1,6 @@
 /* global describe, it */
-/* eslint max-len: [1, 100], curly: 0 */
+/* eslint max-len: [1, 100], curly: 0, no-underscore-dangle: 0, no-unused-expressions: 0
+   no-continue: 0 */
 
 // -- Node modules
 var fs     = require('fs')
@@ -68,15 +69,13 @@ function _deleteTestDb() {
  * @returns {}          -,
  */
 function _createTestDb() {
-
   // Delete previous file if any:
   _deleteTestDb();
 
   // Create NOACCESS:
-  fs.writeFileSync(NOACCESS, '', { mode: '000'});
+  fs.writeFileSync(NOACCESS, '', { mode: '000' });
   // Create WRONGDB:
-  fs.writeFileSync(WRONGDB, 'aaa fff zzz ff  eer', { mode: '755'});
-
+  fs.writeFileSync(WRONGDB, 'aaa fff zzz ff  eer', { mode: '755' });
 }
 
 
@@ -86,9 +85,7 @@ function _createTestDb() {
 _createTestDb();
 
 describe('Test the jov2 library:', function() {
-
   describe('Test the test databases files:', function() {
-
     it('Expects ' + DB + ' to exist and can be read.', function(done) {
       fs.access(DB, fs.R_OK, function(error) {
         expect(error).to.be.null;
@@ -158,7 +155,7 @@ describe('Test the jov2 library:', function() {
     }
 
     it('Expects the method to throw an error if the database name isn\'t provided.', function() {
-      expect(function(){jov2.getRecord();}).to.throw('You must provide a database name!');
+      expect(function() { jov2.getRecord(); }).to.throw('You must provide a database name!');
     });
 
     it('Expects the method to return an array.', function(done) {
@@ -176,7 +173,6 @@ describe('Test the jov2 library:', function() {
 
     // Anayse objects type 1:
     describe('The object type 1:', function() {
-
       it('Expects it to have the property "record".', function() {
         expect(type1).to.have.property('record');
       });
@@ -208,7 +204,6 @@ describe('Test the jov2 library:', function() {
 
     // Anayse objects type 2:
     describe('The object type 2:', function() {
-
       it('Expects it to have the property "record".', function() {
         expect(type2).to.have.property('record');
       });
