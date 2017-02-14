@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.2.2 (February 14, 2016)
+
+  * Updated the dependencies,
+  * ...,
+
+
 ### 0.2.1 (December 27, 2016)
 
   * Updated .travis.yml to run the tests with the latest stable version of Node.js,
