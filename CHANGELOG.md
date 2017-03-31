@@ -1,9 +1,9 @@
 ### HEAD
 
-### 0.2.x (March 31, 2017)
+### 0.3.0 (March 31, 2017)
 
   * Updated the library to comply with ES6 syntax,
-  * ...,
+  * Release.
 
 
 ### 0.2.2 (February 14, 2017)
