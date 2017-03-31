@@ -1,25 +1,26 @@
 /* global describe, it */
-/* eslint max-len: [1, 100], curly: 0, no-underscore-dangle: 0, no-unused-expressions: 0
-   no-continue: 0 */
+/* eslint one-var: 0, import/no-extraneous-dependencies: 0, no-continue: 0 */
 
 // -- Node modules
-var fs     = require('fs')
-  , expect = require('chai').expect
-  ;
+const fs     = require('fs')
+    , expect = require('chai').expect
+    ;
 
 // -- Local modules
-var jov2 = require('../index.js')
-  ;
+const jov2 = require('../index.js')
+    ;
 
 // -- Local constants
-var DB = '_db/chateaux.ov2'
+const DB     = '_db/chateaux.ov2'
   , NOACCESS = '_db/noaccess.ov2'
   , WRONGDB  = '_db/wrong.ov2'
   ;
 
 // -- Local variables
 
-// -- Private functions
+
+// -- Private functions --------------------------------------------------------
+/* eslint-disable no-underscore-dangle */
 
 /**
  * Deletes temporary OV2 DB.
@@ -30,7 +31,7 @@ var DB = '_db/chateaux.ov2'
  * @returns {}          -,
  */
 function _deleteTestDb() {
-  var isFile
+  let isFile
     ;
 
   // Delete NOACCESS:
@@ -77,46 +78,47 @@ function _createTestDb() {
   // Create WRONGDB:
   fs.writeFileSync(WRONGDB, 'aaa fff zzz ff  eer', { mode: '755' });
 }
+/* eslint-enable no-underscore-dangle */
 
 
-// -- Main
+// -- Public section -----------------------------------------------------------
 
 // First create false DB:
 _createTestDb();
 
-describe('Test the jov2 library:', function() {
-  describe('Test the test databases files:', function() {
-    it('Expects ' + DB + ' to exist and can be read.', function(done) {
-      fs.access(DB, fs.R_OK, function(error) {
-        expect(error).to.be.null;
+describe('Test the jov2 library:', () => {
+  describe('Test the test databases files:', () => {
+    it(`Expects ${DB} to exist and can be read.`, (done) => {
+      fs.access(DB, fs.R_OK, (error) => {
+        expect(error).to.be.equal(null);
         done();
       });
     });
 
-    it('Expects ' + WRONGDB + ' to exist and can be read.', function(done) {
-      fs.access(WRONGDB, fs.R_OK, function(error) {
-        expect(error).to.be.null;
+    it(`Expects ${WRONGDB} to exist and can be read.`, (done) => {
+      fs.access(WRONGDB, fs.R_OK, (error) => {
+        expect(error).to.be.equal(null);
         done();
       });
     });
 
-    it('Expects ' + NOACCESS + ' to exist.', function(done) {
-      fs.stat(NOACCESS, function(error) {
-        expect(error).to.be.null;
+    it(`Expects ${NOACCESS} to exist.`, (done) => {
+      fs.stat(NOACCESS, (error) => {
+        expect(error).to.be.equal(null);
         done();
       });
     });
 
-    it('Expects ' + NOACCESS + ' to be unreadable.', function(done) {
-      fs.access(NOACCESS, fs.R_OK, function(error) {
-        expect(error).not.to.be.null;
+    it(`Expects ${NOACCESS} to be unreadable.`, (done) => {
+      fs.access(NOACCESS, fs.R_OK, (error) => {
+        expect(error).not.to.be.equal(null);
         done();
       });
     });
   });
 
-  describe('Test the method getRecord():', function() {
-    var ov2
+  describe('Test the method getRecord():', () => {
+    let ov2
       , type0
       , type1
       , type2
@@ -124,42 +126,48 @@ describe('Test the jov2 library:', function() {
       ;
 
     // Extract a specimen of each type:
+    /* eslint-disable no-underscore-dangle */
     function _extract() {
-      var i;
+      let i;
 
       for (i = 0; i < ov2.length; i++) {
-        if (ov2[i].type === 0)
+        if (ov2[i].type === 0) {
           if (type0 === undefined) {
             type0 = ov2[i];
             continue;
           }
+        }
 
-        if (ov2[i].type === 1)
+        if (ov2[i].type === 1) {
           if (type1 === undefined) {
             type1 = ov2[i];
             continue;
           }
+        }
 
-        if (ov2[i].type === 2)
+        if (ov2[i].type === 2) {
           if (type2 === undefined) {
             type2 = ov2[i];
             continue;
           }
+        }
 
-        if (ov2[i].type === 3)
+        if (ov2[i].type === 3) {
           if (type3 === undefined) {
             type3 = ov2[i];
             continue;
           }
+        }
       }
     }
+    /* eslint-enable no-underscore-dangle */
 
-    it('Expects the method to throw an error if the database name isn\'t provided.', function() {
-      expect(function() { jov2.getRecord(); }).to.throw('You must provide a database name!');
+    it('Expects the method to throw an error if the database name isn\'t provided.', () => {
+      expect(() => { jov2.getRecord(); }).to.throw('You must provide a database name!');
     });
 
-    it('Expects the method to return an array.', function(done) {
-      jov2.getRecord(DB, function(data) {
+    it('Expects the method to return an array.', (done) => {
+      jov2.getRecord(DB, (data) => {
         ov2 = data;
         expect(data).to.be.an('array');
         _extract();
@@ -167,70 +175,70 @@ describe('Test the jov2 library:', function() {
       });
     });
 
-    it('Expects the method to return an array of objects.', function() {
+    it('Expects the method to return an array of objects.', () => {
       expect(ov2[0]).to.be.an('object');
     });
 
     // Anayse objects type 1:
-    describe('The object type 1:', function() {
-      it('Expects it to have the property "record".', function() {
+    describe('The object type 1:', () => {
+      it('Expects it to have the property "record".', () => {
         expect(type1).to.have.property('record');
       });
 
-      it('Expects it to have the property "type".', function() {
+      it('Expects it to have the property "type".', () => {
         expect(type1).to.have.property('type');
       });
 
-      it('Expects it to have the property "bytes".', function() {
+      it('Expects it to have the property "bytes".', () => {
         expect(type1).to.have.property('bytes');
       });
 
-      it('Expects it to have the property "λwest".', function() {
+      it('Expects it to have the property "λwest".', () => {
         expect(type1).to.have.property('λwest');
       });
 
-      it('Expects it to have the property "φsouth".', function() {
+      it('Expects it to have the property "φsouth".', () => {
         expect(type1).to.have.property('φsouth');
       });
 
-      it('Expects it to have the property "λeast".', function() {
+      it('Expects it to have the property "λeast".', () => {
         expect(type1).to.have.property('λeast');
       });
 
-      it('Expects it to have the property "φnorth".', function() {
+      it('Expects it to have the property "φnorth".', () => {
         expect(type1).to.have.property('φnorth');
       });
     });
 
     // Anayse objects type 2:
-    describe('The object type 2:', function() {
-      it('Expects it to have the property "record".', function() {
+    describe('The object type 2:', () => {
+      it('Expects it to have the property "record".', () => {
         expect(type2).to.have.property('record');
       });
 
-      it('Expects it to have the property "type".', function() {
+      it('Expects it to have the property "type".', () => {
         expect(type2).to.have.property('type');
       });
 
-      it('Expects it to have the property "length".', function() {
+      it('Expects it to have the property "length".', () => {
         expect(type2).to.have.property('length');
       });
 
-      it('Expects it to have the property "λ".', function() {
+      it('Expects it to have the property "λ".', () => {
         expect(type2).to.have.property('λ');
       });
 
-      it('Expects it to have the property "φ".', function() {
+      it('Expects it to have the property "φ".', () => {
         expect(type2).to.have.property('φ');
       });
 
-      it('Expects it to have the property "info".', function() {
+      it('Expects it to have the property "info".', () => {
         expect(type2).to.have.property('info');
       });
 
-      it('Expects it to delete test db.', function() {
+      it('Expects it to delete test db.', () => {
         _deleteTestDb();
-        expect(true).to.be.true;
+        expect(true).to.be.equal(true);
       });
     });
   });

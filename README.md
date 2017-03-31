@@ -18,9 +18,9 @@ jOV2 is a light Javascript API for extracting POI (Point Of Interest) from an OV
 ### Extract records from database
 
 ```
-var jov2 = require('jov2');
+const jov2 = require('jov2');
 
-jov2.getRecord('path/to/db/file', function(data) {
+jov2.getRecord('path/to/db/file', (data) => {
   console.log(data);
 });
 ```
