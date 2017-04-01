@@ -162,12 +162,16 @@ describe('Test the jov2 library:', () => {
     }
     /* eslint-enable no-underscore-dangle */
 
-    it('Expects the method to throw an error if the database name isn\'t provided.', () => {
-      expect(() => { jov2.getRecord(); }).to.throw('You must provide a database name!');
+    it('Expects the method to return an error if the database name isn\'t provided.', () => {
+      jov2.getRecord().then(() => {
+        expect(false).to.be.equal(true);
+      }).catch((e) => {
+        expect(e).to.be.equal('string');
+      });
     });
 
     it('Expects the method to return an array.', (done) => {
-      jov2.getRecord(DB, (data) => {
+      jov2.getRecord(DB, (err, data) => {
         ov2 = data;
         expect(data).to.be.an('array');
         _extract();
@@ -239,6 +243,17 @@ describe('Test the jov2 library:', () => {
       it('Expects it to delete test db.', () => {
         _deleteTestDb();
         expect(true).to.be.equal(true);
+      });
+    });
+
+    // Promise
+    describe('Promise:', () => {
+      it('Expects getRecord to return a promise.', () => {
+        jov2.getRecord(DB).then((data) => {
+          expect(data).to.be.an('array');
+        }).catch(() => {
+          //
+        });
       });
     });
   });

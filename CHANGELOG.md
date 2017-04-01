@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.4.0 (April 1, 2017)
+
+  * Added promises,
+  * ...,
+
+
 ### 0.3.0 (March 31, 2017)
 
   * Updated the library to comply with ES6 syntax,
