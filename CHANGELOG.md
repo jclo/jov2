@@ -3,7 +3,7 @@
 ### 0.4.0 (April 1, 2017)
 
   * Added promises,
-  * ...,
+  * Release.
 
 
 ### 0.3.0 (March 31, 2017)
