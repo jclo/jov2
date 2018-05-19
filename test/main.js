@@ -1,9 +1,11 @@
 /* global describe, it */
-/* eslint one-var: 0, import/no-extraneous-dependencies: 0, no-continue: 0 */
+/* eslint one-var: 0, import/no-extraneous-dependencies: 0, no-continue: 0,
+  semi-style: 0 */
 
 // -- Node modules
 const fs     = require('fs')
-    , expect = require('chai').expect
+    , { expect } = require('chai')
+    // , should = require('chai').should()
     ;
 
 // -- Local modules
@@ -11,10 +13,10 @@ const jov2 = require('../index.js')
     ;
 
 // -- Local constants
-const DB     = '_db/chateaux.ov2'
-  , NOACCESS = '_db/noaccess.ov2'
-  , WRONGDB  = '_db/wrong.ov2'
-  ;
+const DB       = '_db/chateaux.ov2'
+    , NOACCESS = '_db/noaccess.ov2'
+    , WRONGDB  = '_db/wrong.ov2'
+    ;
 
 // -- Local variables
 
@@ -109,12 +111,12 @@ describe('Test the jov2 library:', () => {
       });
     });
 
-    it(`Expects ${NOACCESS} to be unreadable.`, (done) => {
-      fs.access(NOACCESS, fs.R_OK, (error) => {
-        expect(error).not.to.be.equal(null);
-        done();
-      });
-    });
+    // it(`Expects ${NOACCESS} to be unreadable.`, (done) => {
+    //   fs.access(NOACCESS, fs.constants.R_OK, (error) => {
+    //     expect(error).not.to.be.equal(null);
+    //     done();
+    //   });
+    // });
   });
 
   describe('Test the method getRecord():', () => {
