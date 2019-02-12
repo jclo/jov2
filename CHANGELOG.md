@@ -1,5 +1,11 @@
 ### HEAD
 
+### 0.4.2 (February 12, 2019)
+
+  * Updated the project with latest versions of the dependencies,
+  * ...,
+
+
 ### 0.4.1 (May 19, 2018)
 
   * Updated the dependencies,

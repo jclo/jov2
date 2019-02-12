@@ -253,8 +253,8 @@ describe('Test the jov2 library:', () => {
       it('Expects getRecord to return a promise.', () => {
         jov2.getRecord(DB).then((data) => {
           expect(data).to.be.an('array');
-        }).catch(() => {
-          //
+        }).catch((e) => {
+          throw new Error(e);
         });
       });
     });

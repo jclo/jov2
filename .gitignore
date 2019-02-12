@@ -1,4 +1,5 @@
 .DS_Store
-node_modules
-coverage
 _poi
+.nyc_output
+coverage
+node_modules

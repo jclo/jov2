@@ -18,7 +18,7 @@ jOV2 is a light Javascript API for extracting POI (Point Of Interest) from an OV
 ### Extract records from the database
 
 #### From a callback
-```
+```js
 const jov2 = require('jov2');
 
 jov2.getRecord('path/to/db/file', (err, data) => {
@@ -27,7 +27,7 @@ jov2.getRecord('path/to/db/file', (err, data) => {
 ```
 
 #### From a promise
-```
+```js
 const jov2 = require('jov2');
 
 jov2.getRecord('path/to/db/file')
@@ -41,7 +41,7 @@ jov2.getRecord('path/to/db/file')
 
 This method returns an `array` of records. Each record is a Javascript object. The record with type 2, a simple POI record, looks like:
 
-```
+```js
 {
   record: 2377,
   type: 2,
@@ -95,6 +95,6 @@ Enjoy!
 [download-url]: https://www.npmjs.com/package/jov2
 [travis-url]: https://travis-ci.org/jclo/jov2
 [coveralls-url]: https://coveralls.io/github/jclo/jov2?branch=master
-[dependencies-url]: https://david-dm.org/jclo/jov2#info=dependencies
-[devdependencies-url]: https://david-dm.org/jclo/jov2#info=devDependencies
+[dependencies-url]: https://david-dm.org/jclo/jov2
+[devdependencies-url]: https://david-dm.org/jclo/jov2?type=dev
 [license-url]: http://opensource.org/licenses/MIT
