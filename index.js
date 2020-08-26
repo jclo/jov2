@@ -1,1 +1,1 @@
-module.exports = require('./lib/jov2');
+module.exports = require('./src/jov2');

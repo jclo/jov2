@@ -1,15 +1,16 @@
 {
   "name": "jov2",
-  "version": "0.4.2",
+  "version": "1.0.0",
   "description": "A light Javascript API for reading OV2 POI databases",
   "main": "index.js",
+  "bin": {},
   "scripts": {
-    "test": "nyc --reporter=lcov mocha ./test/main.js",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov mocha ./test/main.js",
     "check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "display-coverage": "opener ./coverage/lcov-report/index.html",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "report": "nyc report",
-    "doc": "vuepress dev docs"
+    "doc": ""
   },
   "repository": {
     "type": "git",
@@ -21,28 +22,30 @@
     "TomTom"
   ],
   "author": {
-    "name": "jclo",
-    "email": "jclo@mobilabs.fr",
-    "url": "http://www.mobilabs.fr/"
+    "name": "Mobilabs",
+    "email": "contact@mobilabs.fr",
+    "url": "http://www.mobilabs.fr"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jclo/jov2/issues"
   },
-  "homepage": "https://github.com/jov2/umdlib",
-  "dependencies": {
-    "vuepress": "0.14.8"
-  },
+  "homepage": "https://github.com/jclo/jov2",
+  "dependencies": {},
   "devDependencies": {
-    "chai": "4.2.0",
-    "coveralls": "3.0.2",
-    "eslint": "5.13.0",
-    "eslint-config-airbnb-base": "13.1.0",
-    "eslint-plugin-import": "2.16.0",
-    "husky": "1.3.1",
-    "mocha": "5.2.0",
-    "nyc": "13.2.0",
-    "opener": "1.5.1"
+    "chai": "^4.2.0",
+    "coveralls": "^3.1.0",
+    "cross-env": "^7.0.2",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
+    "mocha": "^8.1.1",
+    "nyc": "^15.1.0",
+    "opener": "^1.5.1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "private": false,
   "husky": {

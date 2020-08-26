@@ -1,25 +1,53 @@
-/* eslint one-var: 0, semi-style: 0, no-buffer-constructor: 0 */
+/** ****************************************************************************
+ *
+ * Implements the function that reads the OV2 db.
+ *
+ * readov2.js exports just an unique function.
+ *
+ * Private Functions:
+ *  . _ascii2utf8                 converts extended ASCII string to UTF-8 String,
+ *  . _readDB                     reads the ov2 file and returns an ov2 buffer,
+ *  . _readOv2                    reads and decode OV2 database contents,
+ *
+ *
+ * Public Function:
+ *  . readOv2                     reads and decode OV2 database contents,
+ *
+ *
+ *
+ * @namespace    -
+ * @dependencies none
+ * @exports      -
+ * @author       -
+ * @since        0.0.0
+ * @version      -
+ * ************************************************************************** */
+/* global */
+/* eslint-disable one-var, semi-style, no-underscore-dangle */
 
-// -- Node modules
-const fs    = require('fs')
-    ;
 
-// -- Local modules
+// -- Module Path
+const fs = require('fs');
 
-// -- Local constants
 
-// -- Local variables
+// -- Local Modules
 
-// -- Private functions --------------------------------------------------------
-/* eslint-disable no-underscore-dangle */
+
+// -- Local Constants
+
+
+// -- Local Variables
+
+
+// -- Private Functions --------------------------------------------------------
 
 /**
- * Converts extended ASCII string to UTF-8 String.
+ * Converts an extended ASCII string to an UTF-8 String.
  *
- * @function(arg1)
+ * @function (arg1)
  * @private
- * @param {Buffer}        buffer that contains a string coded in extended ASCII,
- * @returns {String}      returns the corresponding UTF-8 string,
+ * @param {Buffer}          buffer that contains a string coded in extended ASCII,
+ * @returns {String}        returns the corresponding UTF-8 string,
  */
 function _ascii2utf8(buffer) {
   let c
@@ -52,14 +80,14 @@ function _ascii2utf8(buffer) {
 /**
  * Reads the ov2 file and returns an ov2 buffer.
  *
- * @function(arg1, arg2)
+ * @function (arg1, arg2)
  * @private
- * @param {String}        the name of the database,
- * @param {Function}      the callback to call at completion,
- * @returns {Buffer}      returns the binary ov2 data,
- * @throws                throws an error if the database doesn't exist,
- *                        is unreachable or is corrupted,
-  */
+ * @param {String}          the name of the database,
+ * @param {Function}        the callback to call at completion,
+ * @throws                  throws an error if the database doesn't exist,
+ *                          is unreachable or is corrupted,
+ * @returns {}              -,
+ */
 function _readDB(db, callback) {
   // Is db defined?
   if (db === undefined) {
@@ -101,14 +129,7 @@ function _readDB(db, callback) {
 /**
  * Reads and decode OV2 database contents.
  *
- * @function(arg1, arg2)
- * @private
- * @param {String}        the name of the database,
- * @param {Function}      the callback to call at completion,
- * @returns {Object}      the ov2 record inside a Javascript object,
- * @throws                throws an error if the record type isn't decoded or unknown,
- *
- * @description           ov2 record
+ * Database organisation:
  *
  * DELETED RECORD:
  *   1 byte          T: type (always 0),
@@ -143,6 +164,15 @@ function _readDB(db, callback) {
  *   Q bytes         Unique ID: zero−terminated string specifying the unique ID
  *                   of the POI,
  *   L−P−Q−13 bytes  Extra data: zero−terminated string, not used yet,
+ *
+ *
+ * @function (arg1, arg2)
+ * @private
+ * @param {String}          the name of the database,
+ * @param {Function}        the callback to call at completion,
+ * @throws                  throws an error if the record type isn't decoded or unknown,
+ * @returns {}              -,
+ * @since 0.0.0
  */
 function _readOv2(db, callback) {
   // Read the database contents:
@@ -221,35 +251,23 @@ function _readOv2(db, callback) {
     callback(null, records);
   });
 }
-/* eslint-enable no-underscore-dangle */
 
 
-// -- Public methods -----------------------------------------------------------
+// -- Public -------------------------------------------------------------------
 
-module.exports = {
+/**
+ * Reads and decode OV2 database contents.
+ *
+ * @function (arg1, arg2)
+ * @public
+ * @param {String}          the name of the database,
+ * @param {Function}        the callback to call at completion,
+ * @returns {}              -,
+ * @since 0.0.0
+ */
+function readOv2(db, callback) {
+  _readOv2(db, callback);
+}
 
-  /**
-   * Returns the database contents.
-   *
-   * @function (arg1, arg2)
-   * @public
-   * @param {String}      the database name,
-   * @param {Function}    the callback function to call at completion,
-   * @returns {Object}    returns a promise,
-   */
-  getRecord(db, callback) {
-    const p = new Promise((resolve, reject) => {
-      _readOv2(db, (err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-        if (callback) {
-          callback(err, data);
-        }
-      });
-    });
-    return p;
-  },
-};
+// -- Export
+module.exports = readOv2;
