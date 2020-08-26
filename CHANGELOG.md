@@ -3,7 +3,7 @@
 ### 1.0.0 (August 26, 2020)
 
   * Reshuffled the project,
-  * ...,
+  * Release.
 
 
 ### 0.4.2 (February 12, 2019)
