@@ -1,6 +1,6 @@
 {
   "name": "jov2",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A light Javascript API for reading OV2 POI databases",
   "main": "index.js",
   "bin": {},

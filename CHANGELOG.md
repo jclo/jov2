@@ -1,9 +1,9 @@
 ### HEAD
 
-### 1.0.0 (February 1, 2024)
+### 1.0.1 (February 1, 2024)
 
   * Updated the project with the boilerplate ES6lib v2.2 (Github Actions),
-  * ...,
+  * Release.
 
 
 ### 1.0.0 (August 26, 2020)
