@@ -34,7 +34,7 @@
 
 
 // -- Local Modules
-const pack = require('../package.json')
+const pack    = require('../package.json')
     , readOv2 = require('./private/readov2')
     ;
 

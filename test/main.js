@@ -7,7 +7,7 @@
 
 
 // -- Local Modules
-const jOV2    = require('../index.js')
+const jOV2    = require('../index')
     , pack    = require('../package.json')
     , testlib = require('./int/lib')
     , Db      = require('./int/db')
@@ -16,7 +16,7 @@ const jOV2    = require('../index.js')
 
 
 // -- Local Constants
-const LIBNAME  = 'jOV2'
+const libname  = 'jOV2'
     , DB       = '_db/chateaux.ov2'
     , NOACCESS = '_db/noaccess.ov2'
     , WRONGDB  = '_db/wrong.ov2'
@@ -28,8 +28,7 @@ const LIBNAME  = 'jOV2'
 
 // -- Main
 describe('Test jOV2:', () => {
-  // Test generic items:
-  testlib(jOV2, LIBNAME, pack.version);
+  testlib(jOV2, libname, pack.version, 'without new');
 
   // Create false databases:
   Db.create(NOACCESS, WRONGDB);
